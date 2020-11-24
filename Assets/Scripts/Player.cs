@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     public float jumpVelocitiy;
     public ScoreController scoreController;
 
+    private bool canJump;
+
     private void OnEnable()
     {
         rigidbody = GetComponent<Rigidbody2D>();
@@ -18,9 +20,10 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && canJump)
         {
             rigidbody.velocity = Vector2.up * jumpVelocitiy;
+            canJump = false;
         }
 
         //faster falling
@@ -41,6 +44,14 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("PointTrigger"))
         {
             scoreController.AddScore();
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            canJump = true;
         }
     }
 }
