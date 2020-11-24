@@ -58,7 +58,7 @@ public class ScoreController : MonoBehaviour
         SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
         builder.DataSource = "awlodarczyk.database.windows.net";
         builder.UserID = "awlodarczyk";
-        builder.Password = "pass";
+        builder.Password = "";
         builder.InitialCatalog = "awlodarczykdb";
         try
         {
@@ -74,13 +74,12 @@ public class ScoreController : MonoBehaviour
                 //execute the SQLCommand
                 SqlDataReader dr = cmd.ExecuteReader();
 
-                //check if there are records
                 if (dr.HasRows)
                 {
                     while (dr.Read())
                     {
-                        //display retrieved record (first column only/string value)
                         Debug.Log(dr.GetString(0));
+                        Debug.Log(dr.GetInt32(1));
                     }
                 }
                 else
