@@ -45,7 +45,6 @@ public class ScoreController : MonoBehaviour
     private void OnGameStarted(object sender, EventArgs e)
     {
         Score = 0;
-        SendScore();
     }
 
     public void AddScore(int scoreToAdd = 1)
@@ -53,7 +52,7 @@ public class ScoreController : MonoBehaviour
         Score += scoreToAdd;
     }
 
-    public void SendScore()
+    public void SendScoreAndPlayAgain()
     {
         SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
         builder.DataSource = "awlodarczyk.database.windows.net";
@@ -69,23 +68,11 @@ public class ScoreController : MonoBehaviour
                 connection.Open();
                 Debug.Log("connection established");
                 // sql command
-                SqlCommand cmd = new SqlCommand("SELECT * FROM highscores;", connection);
+                SqlCommand cmd = new SqlCommand($"INSERT INTO highscores(player_name, score) VALUES('{nameInputField.text}',{Score})", connection);
 
                 //execute the SQLCommand
                 SqlDataReader dr = cmd.ExecuteReader();
 
-                if (dr.HasRows)
-                {
-                    while (dr.Read())
-                    {
-                        Debug.Log(dr.GetString(0));
-                        Debug.Log(dr.GetInt32(1));
-                    }
-                }
-                else
-                {
-                    Debug.Log("No data found.");
-                }
                 dr.Close();
             }
         }
@@ -94,5 +81,7 @@ public class ScoreController : MonoBehaviour
             //display error message
             Debug.Log("Exception: " + ex.Message);
         }
+
+        gameController.StartGame();
     }
 }

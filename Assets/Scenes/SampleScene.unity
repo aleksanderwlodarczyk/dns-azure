@@ -1527,6 +1527,7 @@ GameObject:
   - component: {fileID: 1087912983}
   - component: {fileID: 1087912982}
   - component: {fileID: 1087912984}
+  - component: {fileID: 1087912985}
   m_Layer: 5
   m_Name: Highscores
   m_TagString: Untagged
@@ -1620,6 +1621,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1087912985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087912980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6981819941229e04a8ebf8ffcdab0399, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1278729506
 GameObject:
   m_ObjectHideFlags: 0
@@ -1993,8 +2006,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 781555687}
-        m_MethodName: StartGame
+      - m_Target: {fileID: 2052985739}
+        m_MethodName: SendScoreAndPlayAgain
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2887,6 +2900,7 @@ MonoBehaviour:
   gameController: {fileID: 781555687}
   loseScreenScoreText: {fileID: 767438000}
   inGameScoreText: {fileID: 1070412170}
+  nameInputField: {fileID: 39795358}
 --- !u!1001 &2112918688
 PrefabInstance:
   m_ObjectHideFlags: 0
