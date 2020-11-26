@@ -27,7 +27,7 @@ public class HighscoreTable : MonoBehaviour
                 connection.Open();
                 Debug.Log("connection established");
                 // sql command
-                SqlCommand cmd = new SqlCommand("SELECT * FROM highscores;", connection);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM highscores ORDER BY score DESC;", connection);
 
                 //execute the SQLCommand
                 SqlDataReader dr = cmd.ExecuteReader();
